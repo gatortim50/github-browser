@@ -7,10 +7,20 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     console.log('profile props:', this.props.user);
+    this.render_repos = this.render_repos.bind(this);
+  }
+
+  render_repos() {
+    let repos = `${this.props.user.repos}`
+    return (
+      <View>
+        <Text> Repos List </Text>
+      </View>
+    );
+
   }
 
   render() {
-    let repos = `${this.props.user.repos}`
     return (
       <ScrollView style={{padding: 20}}>
         <Text style={{fontSize: 20}}>
@@ -32,6 +42,7 @@ class Profile extends Component {
         <Text style={{fontSize: 13}}>
           {`Repos: ${this.props.user.public_repos}`}
         </Text>
+        {this.render_repos()}
         <View style={{margin: 20}}/>
         <Button onPress={() => this.props.getLogOut()}
           title="Logout"/>

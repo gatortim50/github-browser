@@ -1,3 +1,4 @@
+import { USERNAME, PASSWORD } from 'react-native-dotenv'
 import {
   GITHUB_URL,
   LOGIN_USER,
@@ -11,8 +12,12 @@ import buffer from "buffer";
 // login actions
 //
 export function loginUser(email, password) {
-  email = "timothy.l.mckee@gmail.com"
-  password = "Saints12"
+
+  // testing only
+  email = USERNAME
+  password = PASSWORD
+  console.log(`email: ${email}  password: ${password}`);
+
   let b = new buffer.Buffer(email + ":" + password);
   let encodedAuth = b.toString("base64");
 
