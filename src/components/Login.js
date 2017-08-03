@@ -128,7 +128,8 @@ const styles = StyleSheet.create({
 function mapStateToProps (state, ownProps) {
   console.log('login state:', state.auth);
   return {
-    user: state.auth.user
+    user: state.auth.user,
+    isLoading: state.auth.isLoading
   }
 }
 

@@ -13,10 +13,12 @@ import buffer from "buffer";
 //
 export function loginUser(email, password) {
 
-  // testing only
-  email = USERNAME
-  password = PASSWORD
-  console.log(`email: ${email}  password: ${password}`);
+  // testing only using the .env values
+  if (!email) {
+    email = USERNAME
+    password = PASSWORD
+    console.log(`Using test data email: ${email}  password: ${password}`);
+  }
 
   let b = new buffer.Buffer(email + ":" + password);
   let encodedAuth = b.toString("base64");
