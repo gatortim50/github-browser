@@ -20,8 +20,15 @@ class Login extends Component {
     this.state = {
       isLoading: false,
       isLoggedIn: false,
+      username: "",
+      password: "",
       user: []
     };
+  }
+
+  userLogin (e) {
+    this.props.onLogin(this.state.username, this.state.password);
+    e.preventDefault();
   }
 
   render() {
@@ -57,7 +64,7 @@ class Login extends Component {
           secureTextEntry={true}
         />
         <TouchableHighlight
-          onPress={() => this.props.getLogin()}
+          onPress={(e) => this.userLogin(e)}
           style={styles.button}>
           <Text style={styles.buttonText}>Log in</Text>
         </TouchableHighlight>
@@ -126,7 +133,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps (state, ownProps) {
-  console.log('login state:', state.auth);
+  //console.log('login state:', state.auth);
   return {
     user: state.auth.user,
     isLoading: state.auth.isLoading
@@ -135,7 +142,7 @@ function mapStateToProps (state, ownProps) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    getLogin: () => dispatch(loginUser())
+    onLogin: (username, password) => { dispatch(loginUser(username, password)); }
   }
 }
 

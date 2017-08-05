@@ -13,6 +13,7 @@ import buffer from "buffer";
 //
 export function loginUser(email, password) {
 
+console.log(`Using real data email: ${email}  password: ****`);
   // testing only using the .env values
   if (!email) {
     email = USERNAME

@@ -3,6 +3,8 @@ const initialState = {
   user: [],
   isLoading: false,
   isLoggedIn: false,
+  username: '',
+  password: '',
   error: false
 };
 

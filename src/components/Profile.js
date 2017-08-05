@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Image, Text, View, Button } from 'react-native';
+import { AsyncStorage, ScrollView, Image, Text, View, Button } from 'react-native';
 import { logout } from '../actions/authActions';
 
 class Profile extends Component {
