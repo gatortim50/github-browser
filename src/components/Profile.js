@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AsyncStorage, ScrollView, Image, Text, View, Button } from 'react-native';
-import { logout } from '../actions/authActions';
+import { logout } from '../actions';
+import { getUserRepos } from '../actions';
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     console.log('profile props:', this.props.user);
     this.render_repos = this.render_repos.bind(this);
+
+    this.state = { repos: [] };
   }
 
   render_repos() {
-    let repos = `${this.props.user.repos}`
-    return (
-      <View>
-        <Text> Repos List </Text>
-      </View>
-    );
+    
+    // TODO fetch repo data
+    console.log("profile state:", this.state);
+    return <View>
+        <Text style={{ fontSize: 13 }}>
+          {`Repos: ${this.props.repos}`}
+          {`Repos: ${this.state}`}
+        </Text>
+
+        <Button onPress={() => getUserRepos()} title="<Get Repos>" />
+      </View>;
 
   }
 
@@ -45,7 +53,7 @@ class Profile extends Component {
         {this.render_repos()}
         <View style={{margin: 20}}/>
         <Button onPress={() => this.props.getLogOut()}
-          title="Logout"/>
+          title="<Logout>"/>
       </ScrollView>
     );
   }
@@ -53,16 +61,17 @@ class Profile extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('profile ownProps:', this.ownProps);
+  console.log('profile state:', this.state);
   return {
     user: state.auth.user,
+    repos: state.githubRepos.repos,
     isLoggedIn: state.auth.isLoggedIn
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getLogOut: () => dispatch(logout())
+    getRepos: () => dispatch(getUserRepos())
   }
 }
 

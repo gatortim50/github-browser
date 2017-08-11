@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 import auth from './authReducer'
+import githubRepos from './repoReducer'
 
 const rootReducer = combineReducers({
-  auth
-})
+  auth,
+  githubRepos
+});
 
 export default rootReducer

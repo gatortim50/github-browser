@@ -11,7 +11,7 @@ import  {
 } from 'react-native';
 
 //import router from '../config/router'
-import { loginUser } from '../actions/authActions'
+import { loginUser } from '../actions'
 
 class Login extends Component {
   constructor(props) {
@@ -105,23 +105,24 @@ const styles = StyleSheet.create({
         fontSize: 18,
         borderWidth: 1,
         borderColor: '#48BBEC',
-        borderRadius: .25,
+        borderRadius: 3,
         color: '#48BBEC'
     },
     button: {
         height: 50,
         backgroundColor: '#48BBEC',
-        borderColor: '#48BBEC',
-        borderRadius: .25,
+        borderColor: 'rgba(0, 0, 0, 0.1)',
+        borderRadius: 3,
         alignSelf: 'stretch',
         marginTop: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 5
     },
     buttonText: {
-        color: '#fff',
-        fontSize: 24
+      textAlign: 'center',
+      fontSize: 24,
+      fontWeight: '400',
+      color: 'white'
     },
     loader: {
         marginTop: 20
