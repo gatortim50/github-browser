@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {
   GITHUB_REPOS,
   FETCH_REPOS,
