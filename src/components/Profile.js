@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AsyncStorage, ScrollView, Image, Text, View, Button } from 'react-native';
-import { logout } from '../actions';
+import { logoutUser } from "../actions";
 import { getUserRepos } from '../actions';
 
 class Profile extends Component {

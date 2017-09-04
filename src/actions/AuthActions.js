@@ -51,7 +51,7 @@ export function loginUser(email, password) {
   };
 }
 
-export const logout = () => {
+export const logoutUser = () => {
   console.log("LOGOUT");
   return { type: 'LOGOUT' };
 };

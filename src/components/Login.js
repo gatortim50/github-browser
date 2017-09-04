@@ -27,6 +27,9 @@ class Login extends Component {
   }
 
   userLogin (e) {
+    this.state = { 
+      isLoading: true
+    };
     this.props.onLogin(this.state.username, this.state.password);
     e.preventDefault();
   }
