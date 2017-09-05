@@ -1,16 +1,23 @@
 ### Github-Browser
-- User may login
-- View their personal details and repos
-- Search for repos
-- View list of repos
-- Logout
+- User may login, using username or email, and password
+- View their personal details and number of repos
 
-### Directions
+### TODO
+- Search for repos by username
+- View detailed list of user's repos
+
+### This app has been ejected using 'yarn eject'
+### Directions to run under expo (before eject)
 - npm install / yarn install
 - yarn run ios
 
-### To revert to IOS/Android
-- yarn eject
+### To revert to platforms IOS/Android
+```yarn eject```
+
+### Directions to run under react-native (after eject)
+- npm install / yarn install
+- react-native run-ios
+
 
 ### rename env file to .env - this is only for testing
 - edit the .env file and fill in the appropriate values below
@@ -22,5 +29,4 @@
 npm install axios buffer react-native-animatable react-native-keyboard-aware-scroll-view react-native-vector-icons react-navigation react-redux redux-thunk --save
 
 - dev dependencies
-
-npm install react-native-dotenv  babel-preset-react-native --save-dev
+npm install react-native-dotenv babel-preset-react-native --save-dev
