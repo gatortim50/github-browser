@@ -1,8 +1,8 @@
-### Github-Browser
+## Github-Browser
 - User may login, using username or email, and password
 - View their personal details and number of repos
 
-### TODO
+#### TODO
 - Search for repos by username
 - View detailed list of user's repos
 
@@ -17,6 +17,10 @@
 ### Directions to run under react-native (after eject)
 - npm install / yarn install
 - react-native run-ios
+
+``` git clone git@github.com:gatortim50/github-browser.git ```
+
+``` cd github-browser && npm install && react-native run-ios ```
 
 
 ### rename env file to .env - this is only for testing
