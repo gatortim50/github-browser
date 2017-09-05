@@ -52,22 +52,22 @@ export function loginUser(email, password) {
 }
 
 export const logoutUser = () => {
-  console.log("LOGOUT");
-  return { type: 'LOGOUT' };
+  console.log("AuthAction LOGOUT");
+  return { type: 'LOGOUT'};
 };
 
 export const getLogin = () => {
-  //console.log("LOGIN_USER");
+  console.log("AuthAction LOGIN_USER");
   return { type: LOGIN_USER };
 }
 
 export const loginUserSuccess = (data) => {
-  //console.log("LOGIN_SUCCESS", data);
+  //console.log("AuthAction LOGIN_SUCCESS", data);
   return { type: LOGIN_SUCCESS, data };
 }
 
 export const loginUserFailure = (error) => {
-  console.log("LOGIN_FAILURE", error);
+  console.log("AuthAction LOGIN_FAILURE", error);
   return { type: LOGIN_FAILURE };
 }
 

@@ -11,14 +11,14 @@ const initialState = {
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN_USER:
-      //console.log('LOGIN_USER state:', state);
+      console.log('AuthReducer LOGIN_USER state:', state);
       return {
         ...state,
         isLoading: true,
         user: []
       };
     case LOGIN_SUCCESS:
-      console.log('LOGIN_SUCCESS action.data:', action.data);
+      console.log('AuthReducer LOGIN_SUCCESS action.data:', action.data);
       return {
         ...state,
         isLoading: false,
@@ -26,14 +26,14 @@ export default function authReducer(state = initialState, action) {
         user: action.data,
       };
     case LOGIN_FAILURE:
-      //console.log('LOGIN_FAILURE state:', state);
+      console.log('AuthReducer LOGIN_FAILURE state:', state);
       return {
         ...state,
         isLoading: false,
         error: true
       };
       case LOGOUT:
-        console.log('LOGOUT state:', state.user);
+        console.log("AuthReducer LOGOUT state:", initialState);
         return {
           ...state,
           isLoading: false,
