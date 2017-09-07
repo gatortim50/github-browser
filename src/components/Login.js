@@ -1,16 +1,17 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import  {
-    StyleSheet,
-    Text,
-    View,
-    Image,
-    TextInput,
-    TouchableHighlight,
-    ActivityIndicator
-} from 'react-native';
+import PropTypes from "prop-types";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  TouchableHighlight,
+  ActivityIndicator
+} from "react-native";
 
-import { loginUser } from '../actions';
+import { loginUser } from "../actions";
 import styles from "./common/Styles";
 
 class Login extends Component {
@@ -26,7 +27,7 @@ class Login extends Component {
     };
   }
 
-  userLogin (e) {
+  userLogin(e) {
     this.state = { isLoading: true };
     this.props.onLogin(this.state.username, this.state.password);
     e.preventDefault();
@@ -34,7 +35,7 @@ class Login extends Component {
 
   render() {
     let errorCtrl = <View />;
-    <Image style={styles.logo} source={require('../images/Octocat.png')} />
+    <Image style={styles.logo} source={require("../images/Octocat.png")} />;
     if (!this.state.success && this.state.badCredentials) {
       errorCtrl = (
         <Text style={styles.error}>
@@ -51,7 +52,7 @@ class Login extends Component {
 
     return (
       <View style={styles.container}>
-        <Image style={styles.logo} source={require('../images/Octocat.png')} />
+        <Image style={styles.logo} source={require("../images/Octocat.png")} />
         <Text style={styles.heading}>Github Browser</Text>
         <TextInput
           onChangeText={text => this.setState({ username: text })}
@@ -65,8 +66,9 @@ class Login extends Component {
           secureTextEntry={true}
         />
         <TouchableHighlight
-          onPress={(e) => this.userLogin(e)}
-          style={styles.button}>
+          onPress={e => this.userLogin(e)}
+          style={styles.button}
+        >
           <Text style={styles.buttonText}>Log in</Text>
         </TouchableHighlight>
 
@@ -82,21 +84,27 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps (state, ownProps) {
+Login.PropTypes = {
+  isLoggedin: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  user: PropTypes.array
+};
+
+function mapStateToProps(state, ownProps) {
   //console.log('login state:', state.auth);
   return {
     user: state.auth.user,
+    isLoggedIn: state.auth.isLoggedin,
     isLoading: state.auth.isLoading
-  }
+  };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
-    onLogin: (username, password) => { dispatch(loginUser(username, password)); }
-  }
+    onLogin: (username, password) => {
+      dispatch(loginUser(username, password));
+    }
+  };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

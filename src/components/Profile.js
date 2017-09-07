@@ -1,45 +1,55 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { 
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import {
   ActivityIndicator,
-  AsyncStorage, 
-  ScrollView, 
-  Image, 
-  Text, 
+  AsyncStorage,
+  ScrollView,
+  Image,
+  Text,
   TouchableHighlight,
-  View, 
-  Button 
-} from 'react-native';
+  View,
+  Button
+} from "react-native";
 import { logoutUser } from "../actions";
-import styles from './common/Styles';
+import Login from "./Login";
+import styles from "./common/Styles";
 
 class Profile extends Component {
   constructor(props) {
     super(props);
-    console.log("profile props:", this.props.user);
+    const { user, isLoggedin } = this.props;
+    console.log("user:", user);
+    console.log("isLoggedin:", isLoggedin);
+    console.log("profile props:", this.props);
 
-    this.state = { 
-      repos: [],
-      isLoading: false 
-     };
+    this.state = {
+      isLoading: false
+    };
   }
 
   userLogout(e) {
-    this.state = { 
-      username: "",
-      password: "",
-      isLoading: true 
+    this.setState = {
+      isLoading: true
     };
     this.props.onLogout(this.state.username, this.state.password);
     e.preventDefault();
   }
 
   render() {
-    return <ScrollView style={{ padding: 20 }}>
+    if (!this.props.isLoggedIn) {
+      console.log("redirect to login");
+      return <Login />;
+    }
+    return (
+      <ScrollView style={{ padding: 20 }}>
         <Text style={{ fontSize: 20 }}>
           {`Welcome ${this.props.user.name}`}
         </Text>
-        <Image style={{ width: 90, height: 90 }} source={{ uri: `${this.props.user.avatar_url}` }} />
+        <Image
+          style={{ width: 90, height: 90 }}
+          source={{ uri: `${this.props.user.avatar_url}` }}
+        />
         <Text style={{ fontSize: 13 }}>{`Bio: ${this.props.user.bio}`}</Text>
         <Text style={{ fontSize: 13 }}>
           {`Company: ${this.props.user.company}`}
@@ -52,30 +62,42 @@ class Profile extends Component {
         </Text>
         <View style={{ margin: 20 }} />
 
-        <TouchableHighlight onPress={e => this.userLogout(e)} style={styles.button}>
+        <TouchableHighlight
+          onPress={e => this.userLogout(e)}
+          style={styles.button}
+        >
           <Text style={styles.buttonText}>Logout</Text>
         </TouchableHighlight>
 
-        <ActivityIndicator animating={this.state.isLoading} size="large" style={styles.loader} />
-      </ScrollView>;
+        <ActivityIndicator
+          animating={this.state.isLoading}
+          size="large"
+          style={styles.loader}
+        />
+      </ScrollView>
+    );
   }
 }
 
+Profile.PropTypes = {
+  isLoggedin: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  user: PropTypes.array
+};
+
 const mapStateToProps = (state, ownProps) => {
-  console.log('profile state:', this.state);
   return {
     user: state.auth.user,
-    repos: state.githubRepos.repos,
     isLoggedIn: state.auth.isLoggedIn
   };
-}
+};
 
-const mapDispatchToProps = (dispatch) => {
-  return { 
+const mapDispatchToProps = dispatch => {
+  return {
     onLogout: (username, password) => {
       dispatch(logoutUser(username, password));
-    } 
+    }
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

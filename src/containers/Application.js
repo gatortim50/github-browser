@@ -1,9 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Login from '../components/Login';
-import Profile from '../components/Profile';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Login from "../components/Login";
+import Profile from "../components/Profile";
 
 class Application extends Component {
+  constructor(props) {
+    super(props);
+    console.log("Application props:", this.props);
+    this.state = {
+      isLoggedIn: false
+    };
+  }
+
   render() {
     if (this.props.isLoggedIn) {
       return <Profile />;
@@ -13,10 +22,14 @@ class Application extends Component {
   }
 }
 
+Application.PropTypes = {
+  isLoggedin: PropTypes.bool.isRequired
+};
+
 const mapStateToProps = (state, ownProps) => {
   return {
     isLoggedIn: state.auth.isLoggedIn
   };
-}
+};
 
 export default connect(mapStateToProps)(Application);
